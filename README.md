@@ -4,14 +4,24 @@
 ## WINDOWS/LINUX
 ![image](https://github.com/user-attachments/assets/de999747-c388-4383-9f46-ab5134e9df39)
 ***
-## ANDROID (Change the image)
-![Screenshot_2024-09-13-09-10-55-29_d09b905abf7f8178a2728afe155283c0](https://github.com/user-attachments/assets/d3a4840e-20dc-4293-83d9-ad56a4a71446)
+## ANDROID 
+![Screenshot_2024-09-13-17-43-39-80_d09b905abf7f8178a2728afe155283c0](https://github.com/user-attachments/assets/902165a1-943e-473c-a473-acfca00c4345)
+
 *** 
 # ABOUT
 This Application uses a mysql database to read/write/store data.<br/>
 Every Action gets automatically updated.<br/>If the Application is deleted the data still remains intact.
 ***
 # HOW TO DOWNLOAD 
+## WINDOWS.
++ [Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) is required for to run this application
++ [You can Download it from here.](https://drive.google.com/file/d/1b7x0vt2NdB1YblGVyE93mAQguHZ01kq3/view?usp=sharing)<br/>
+## ANDROID.
++ [You can Download it from here.](https://drive.google.com/file/d/1_ovZbv6dVy_or72Ep25YAPf1O0L_92ub/view?usp=sharing) <br/>
+***
+# LABELS 
+Labels can be used to oragnise tasks.<br/>
+Similar type of tasks can be put under a single label.
 ***
 # HOW TO USE
 ## 1.Creating a Task.
@@ -57,5 +67,6 @@ A Task can be updated by simply pressing on the title of the task on the homepag
 2. ```isimportant:``` if this command is entered in the search box, only the important tasks from a specific label will appear.
 3. ```isnotimportant:``` if this command is entered in the search box, only the non-important tasks from a specific label will appear.
 4. ```isnotcompleted:``` if this command is entered in the search box, only the non-completed tasks from a specific label will appear.
-
+***
+# BUG REPORTS CAN BE SENT TO hellf0rg0d _AT_ proton.me
 
