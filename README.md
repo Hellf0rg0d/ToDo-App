@@ -19,7 +19,9 @@ Every Action gets automatically updated.<br/>If the Application is deleted the d
 ## ANDROID.
 + [You can Download it from here.](https://drive.google.com/file/d/1_ovZbv6dVy_or72Ep25YAPf1O0L_92ub/view?usp=sharing) <br/>
 ## LINUX.
-+
++ [You can Download it from here.](https://drive.google.com/file/d/1f5Cg2SYNO_Ynkbeh4cORAU2WduZD7YzW/view?usp=sharing) <br/>
+>[!CAUTION]
+> ToDo App only supports Ubuntu,Debian,x64-bit & ARM64.
 ***
 # LABELS 
 Labels can be used to oragnise tasks.<br/>
