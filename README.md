@@ -4,9 +4,15 @@
 ## WINDOWS/LINUX
 ![image](https://github.com/user-attachments/assets/de999747-c388-4383-9f46-ab5134e9df39)
 ***
-## ANDROID
+## ANDROID (Change the image)
 ![Screenshot_2024-09-13-09-10-55-29_d09b905abf7f8178a2728afe155283c0](https://github.com/user-attachments/assets/d3a4840e-20dc-4293-83d9-ad56a4a71446)
 *** 
+# ABOUT
+This Application uses a mysql database to read/write/store data.<br/>
+Every Action gets automatically updated.<br/>If the Application is deleted the data still remains intact.
+***
+# HOW TO DOWNLOAD 
+***
 # HOW TO USE
 ## 1.Creating a Task.
 A Task can be Created by simply selecting a label and pressing on the new task button <br/>
@@ -31,12 +37,25 @@ A Task can be updated by simply pressing on the title of the task on the homepag
 >[!IMPORTANT]
 >The Task will be save automatically when the page is closed.
 
-## Marking a task as completed or incomplete  
+## 3.Marking a task as completed or incomplete  
 ### A task can be marked as completed or incomplete in two ways.
 1.By holding the title of the task. <br/>
 ![image](https://github.com/user-attachments/assets/7f6cdeb1-17bb-41d7-afcf-c245646c75b3) <br/>
 2. Or by pressing on the title of the task and then pressing mark as completed button. <br/>
 ![image](https://github.com/user-attachments/assets/f219e6ab-98b3-43a4-84cd-a648bc7c69c2) <br/>
 
+## 4.Dos and Don'ts 
+1. Try to keep Title short and unique.
+2. Try to keep detail short and simple enough to describe the title.
+3. A label with empty tasks will be automatically deleted.
+4. Titles and labels are case sensitive i.e.. Hello ≠ HELLO.
+5. If Two Tasks/Labels with same text/name exists then the one created first will be displayed.
+6. Escape characters like ```\n``` and ```\t``` can be used to decorate.
+
+## 5.Commands
+1. ```iscompleted:``` if this command is entered in the search box, only the completed tasks from a specific label will appear.
+2. ```isimportant:``` if this command is entered in the search box, only the important tasks from a specific label will appear.
+3. ```isnotimportant:``` if this command is entered in the search box, only the non-important tasks from a specific label will appear.
+4. ```isnotcompleted:``` if this command is entered in the search box, only the non-completed tasks from a specific label will appear.
 
 
