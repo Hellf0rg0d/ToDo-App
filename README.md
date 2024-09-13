@@ -9,7 +9,7 @@
 *** 
 # HOW TO USE
 ## 1.Creating a Task.
-A Task can be Created by simply selecting a label and pressing on the new task button 
+A Task can be Created by simply selecting a label and pressing on the new task button <br/>
 ![image](https://github.com/user-attachments/assets/d64fde69-9700-4c91-98ed-abfc79a180c6)
 
 >[!NOTE]
@@ -21,8 +21,8 @@ A Task can be Created by simply selecting a label and pressing on the new task b
 >The Task will be save automatically when the page is closed.
 
 ## 2.Updating a Task.
-A Task can be updated by simply pressing on the title of the task on the homepage.
-![image](https://github.com/user-attachments/assets/f5d2b480-f836-48a1-94c5-de3eaf0bc95f)
+A Task can be updated by simply pressing on the title of the task on the homepage. <br/>
+![image](https://github.com/user-attachments/assets/f5d2b480-f836-48a1-94c5-de3eaf0bc95f) <br/>
 ![image](https://github.com/user-attachments/assets/9e8ca0ca-4f7d-4742-a129-087e4ec0c386)
 
 >[!NOTE]
@@ -33,10 +33,10 @@ A Task can be updated by simply pressing on the title of the task on the homepag
 
 ## Marking a task as completed or incomplete  
 ### A task can be marked as completed or incomplete in two ways.
-1.By holding the title of the task.
-![image](https://github.com/user-attachments/assets/7f6cdeb1-17bb-41d7-afcf-c245646c75b3)
-2. Or by pressing on the title of the task and then pressing mark as completed button.
-![image](https://github.com/user-attachments/assets/f219e6ab-98b3-43a4-84cd-a648bc7c69c2)
+1.By holding the title of the task. <br/>
+![image](https://github.com/user-attachments/assets/7f6cdeb1-17bb-41d7-afcf-c245646c75b3) <br/>
+2. Or by pressing on the title of the task and then pressing mark as completed button. <br/>
+![image](https://github.com/user-attachments/assets/f219e6ab-98b3-43a4-84cd-a648bc7c69c2) <br/>
 
 
 
