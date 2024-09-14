@@ -38,7 +38,6 @@ void main() async {
 }
 
 Future<void> getdata() async {
-  print("get data called");
   _searchcontroller.text = '';
   listofimptitles = {};
   listoftitles = {};
@@ -46,31 +45,22 @@ Future<void> getdata() async {
   completedindex = 0;
   nonimpindex = 0;
   impindex = 0;
-  print(
-      "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label}' and important = '' and completed is null;");
   sqlconnection.result = await sqlconnection.conn.execute(
       "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label}' and important = '' and completed is null;");
 
   for (final row in sqlconnection.result.rows) {
     listofimptitles.add(row.colAt(0));
-    print('List of important titles = ${row.colAt(0)}');
   }
-  print(
-      "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label}' and important is null and completed is null;");
   sqlconnection.result = await sqlconnection.conn.execute(
       "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label}' and important is null and completed is null;");
   for (final row in sqlconnection.result.rows) {
     listoftitles.add(row.colAt(0));
-    print('List of non-important titles = ${row.colAt(0)}');
   }
-  print(
-      "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label}' and completed = '';");
   sqlconnection.result = await sqlconnection.conn.execute(
       "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label}' and completed = '';");
 
   for (final row in sqlconnection.result.rows) {
     listofcompletedtitles.add(row.colAt(0));
-    print('list of completed titles = ${row.colAt(0)}');
   }
 }
 
@@ -576,7 +566,6 @@ class _navDrawerState extends State<navDrawer> {
         setState(() {
           label = _label.toLowerCase();
         });
-        print("after clicking label = $label");
         widget.removtaskbox();
       },
     );
@@ -689,17 +678,11 @@ class _CreateTaskState extends State<CreateTask> {
                 //condition to convert empty/non-selected date into null.
                 if (imp) {
                   //condition to know if it's important or not.
-                  print(
-                      "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set label = '${label.replaceAll(r"'", r"\'")}', title = '${_titlecontroller.text.replaceAll(r"'", r"\'")}', details = '${_detailscontroller.text.replaceAll(r"'", r"\'")}',date = null,time = null,important = '' where title = '${title.replaceAll(r"'", r"\'")}';");
-
                   await sqlconnection.conn.execute(
                       "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set label = '${label.replaceAll(r"'", r"\'")}', title = '${_titlecontroller.text.replaceAll(r"'", r"\'")}', details = '${_detailscontroller.text.replaceAll(r"'", r"\'")}',date = null,time = null,important = '' where title = '${title.replaceAll(r"'", r"\'")}';");
                   widget.refreshpage();
                 } else {
-                  print(
-                      "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set label = '${label.replaceAll(r"'", r"\'")}', title = '${_titlecontroller.text.replaceAll(r"'", r"\'")}', details = '${_detailscontroller.text.replaceAll(r"'", r"\'")}',date = null,time = null,important = null where title = '${title.replaceAll(r"'", r"\'")}';");
-
-                  await sqlconnection.conn.execute(
+                await sqlconnection.conn.execute(
                       "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set label = '${label.replaceAll(r"'", r"\'")}', title = '${_titlecontroller.text.replaceAll(r"'", r"\'")}', details = '${_detailscontroller.text.replaceAll(r"'", r"\'")}',date = null,time = null,important = null where title = '${title.replaceAll(r"'", r"\'")}';");
                   widget.refreshpage();
                 }
