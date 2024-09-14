@@ -25,7 +25,6 @@ class deviceinfo {
             'Error:': 'Fuchsia platform isn\'t supported'
           },
       };
-      print('Collecting device data');
       await injectingid(deviceData);
     } on PlatformException {
       deviceData = <String, dynamic>{
@@ -35,7 +34,6 @@ class deviceinfo {
   }
 
   static Future<void> injectingid(Map<String, dynamic> devicedetails) async {
-    print('Injecting data');
     try {
       conn = await MySQLConnection.createConnection(
         host: <hostid>,
@@ -45,19 +43,14 @@ class deviceinfo {
         databaseName: <databasename>,
       );
       await conn.connect();
-      print("Select count(*) from users where uid = '" +
-          devicedetails["id"].toString() +
-          "';");
       result = await conn.execute("Select count(*) from users where uid = '" +
           devicedetails["id"].toString() +
           "';");
 
       for (final row in result.rows) {
         value = row.colAt(0);
-        print(row.colAt(0));
       }
       if (value == '0') {
-        print('doesn\'t exist');
         await conn.execute(
             "Insert into users values ('${devicedetails["os"].toString()}','${devicedetails["model"].toString()}','${devicedetails["isPhysicalDevice"].toString()}','${devicedetails["name"].toString()}','${devicedetails["id"].toString()}');");
 
@@ -146,8 +139,6 @@ class sqlconnection {
           "SELECT EXISTS(SELECT * FROM information_schema.tables WHERE table_schema = 'todoapp' AND table_name = '${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')}');");
       for (final row in result.rows) {
         value = row.colAt(0);
-        print("Checking if the table exist");
-        print(row.colAt(0));
       }
       if (value == '0') {
         await conn.execute(
@@ -156,7 +147,6 @@ class sqlconnection {
     } catch (e) {
       print(e);
     }
-    print('Connected');
   }
 }
 
@@ -173,77 +163,60 @@ class titlesearch {
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and important = '' and completed is null;");
       for (final row in sqlconnection.result.rows) {
         listofimptitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and important = '' and completed = '';");
       for (final row in sqlconnection.result.rows) {
         listofcompletedtitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
     } else if (subtitle.toLowerCase() == 'isnotimportant:') {
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and important is null and completed is null;");
       for (final row in sqlconnection.result.rows) {
         listoftitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and important is null and completed = '';");
       for (final row in sqlconnection.result.rows) {
         listofcompletedtitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
     } else if (subtitle.toLowerCase() == 'iscompleted:') {
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and completed = '';");
       for (final row in sqlconnection.result.rows) {
         listofcompletedtitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
     } else if (subtitle.toLowerCase() == 'isnotcompleted:') {
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and important is null and completed is null;");
-      print('Imp Query Executed');
       for (final row in sqlconnection.result.rows) {
         listoftitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and important = '' and completed is null;");
-      print('Imp Query Executed');
       for (final row in sqlconnection.result.rows) {
         listofimptitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and important is null and completed is null;");
-      print('Query Executed');
       for (final row in sqlconnection.result.rows) {
         listoftitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
     } else {
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and title like '%${subtitle.replaceAll(r"'", r"\'")}%' and important = '' and completed is null;");
-      print('Imp Query Executed');
       for (final row in sqlconnection.result.rows) {
         listofimptitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and title like '%${subtitle.replaceAll(r"'", r"\'")}%' and important is null and completed is null;");
-      print('Query Executed');
       for (final row in sqlconnection.result.rows) {
         listoftitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
       sqlconnection.result = await sqlconnection.conn.execute(
           "select title from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where label = '${label.toString().replaceAll(r"'", r"\'")}' and title like '%${subtitle.replaceAll(r"'", r"\'")}%' and completed = '';");
-      print('Query Executed');
       for (final row in sqlconnection.result.rows) {
         listofcompletedtitles.add(row.colAt(0));
-        print(row.colAt(0));
       }
     }
   }
