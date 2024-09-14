@@ -38,6 +38,7 @@ void main() async {
 }
 
 Future<void> getdata() async {
+    //function used to retrieve titles from db.
   _searchcontroller.text = '';
   listofimptitles = {};
   listoftitles = {};
@@ -65,6 +66,7 @@ Future<void> getdata() async {
 }
 
 Future<void> getlabels() async {
+    //function to retrieve labels from db.
   listoflabels = {};
   listoflabels.add('personal');
   sqlconnection.result = await sqlconnection.conn.execute(
@@ -87,6 +89,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   void removetaskbox() async {
+      //function to refresh main page.
     await getdata();
     setState(() {
       nonimpindex = 0;
@@ -97,7 +100,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // TextEditingController searchbarcontroller
     return MaterialApp(
       title: "ToDo App",
       theme: ThemeData(
@@ -141,13 +143,11 @@ class _MyAppState extends State<MyApp> {
                             focusedBorder: new OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   width: 2.5,
-                                  //color: Colors.red,
                                 ),
                                 borderRadius: BorderRadius.circular(13)),
                             border: new OutlineInputBorder(
                                 borderSide: const BorderSide(
                                   width: 2.5,
-                                  //   color: Colors.redAccent,
                                 ),
                                 borderRadius: BorderRadius.circular(13)),
                             prefixIcon: Icon(
@@ -230,6 +230,7 @@ class _taskboxState extends State<taskbox> {
       completedindex++;
     }
     void completetaskondoubleclick(int a) async {
+        //function to update task as completed or incompleted.
       if (a == 1) {
         await sqlconnection.conn.execute(
             "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set completed = '' where title = '${temptext.replaceAll(r"'", r"\'")}';");
@@ -259,14 +260,12 @@ class _taskboxState extends State<taskbox> {
                     await sqlconnection.conn.execute(
                         "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set important = null where title = '${temptext.replaceAll(r"'", r"\'")}';");
                     setState(() {
-                      // impicon = Icons.star_border;
                     });
                     widget.refreshpage();
                   } else {
                     await sqlconnection.conn.execute(
                         "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set important = '' where title = '${temptext.replaceAll(r"'", r"\'")}';");
                     setState(() {
-                      //   impicon = Icons.star;
                     });
                     widget.refreshpage();
                   }
@@ -299,6 +298,7 @@ class _taskboxState extends State<taskbox> {
                   }
                 },
                 onTap: () async {
+                    //retrieves data of the title from db.
                   title = temptext;
                   sqlconnection.result = await sqlconnection.conn.execute(
                       "select * from ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} where title = '${temptext.replaceAll(r"'", r"\'")}';");
@@ -349,7 +349,6 @@ class _taskboxState extends State<taskbox> {
                   widget.refreshpage();
                 },
               )
-              //  Spacer(),
             ],
           )),
     );
@@ -625,7 +624,7 @@ class _CreateTaskState extends State<CreateTask> {
               if (_titlecontroller.text == '') {
                 // condition to make sure no empty titles are inserted.
               } else if (time == 'Select a time' && date == 'Select a date') {
-                //condition to convert empty/non-selected date into null.
+                //condition to convert empty/non-selected time and date into null.
                 if (imp) {
                   //condition to know if it's important or not.
                   await sqlconnection.conn.execute(
@@ -637,7 +636,7 @@ class _CreateTaskState extends State<CreateTask> {
                   widget.refreshpage();
                 }
               } else if (time == 'Select a time' && date != 'Select a date') {
-                //condition to convert empty/non-selected date into null.
+                //condition to convert empty/non-selected time into null.
                 if (imp) {
                   await sqlconnection.conn.execute(
                       "insert into ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} values ('${label.replaceAll(r"'", r"\'")}','${_titlecontroller.text.replaceAll(r"'", r"\'")}','${_detailscontroller.text.replaceAll(r"'", r"\'")}',STR_TO_DATE('$date', '%d-%m-%Y'),null,'',null);");
@@ -675,7 +674,7 @@ class _CreateTaskState extends State<CreateTask> {
               if (_titlecontroller.text == '') {
                 // condition to make sure no empty titles are inserted.
               } else if (time == 'Select a time' && date == 'Select a date') {
-                //condition to convert empty/non-selected date into null.
+                //condition to convert empty/non-selected time and date into null.
                 if (imp) {
                   //condition to know if it's important or not.
                   await sqlconnection.conn.execute(
@@ -687,7 +686,7 @@ class _CreateTaskState extends State<CreateTask> {
                   widget.refreshpage();
                 }
               } else if (time == 'Select a time' && date != 'Select a date') {
-                //condition to convert empty/non-selected date into null.
+                //condition to convert empty/non-selected time into null.
                 if (imp) {
                   await sqlconnection.conn.execute(
                       "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set label = '${label.replaceAll(r"'", r"\'")}', title = '${_titlecontroller.text.replaceAll(r"'", r"\'")}', details = '${_detailscontroller.text.replaceAll(r"'", r"\'")}',date = STR_TO_DATE('$date', '%d-%m-%Y'),time = null,important = '' where title = '${title.replaceAll(r"'", r"\'")}';");
@@ -698,7 +697,7 @@ class _CreateTaskState extends State<CreateTask> {
                   widget.refreshpage();
                 }
               } else if (time != 'Select a time' && date == 'Select a date') {
-                //condition to convert empty/non-selected time into null.
+                //condition to convert empty/non-selected date into null.
                 if (imp) {
                   await sqlconnection.conn.execute(
                       "update ${deviceinfo.deviceData["id"].toString().replaceAll(RegExp(r'[^\w\s]+'), '')} set label = '${label.replaceAll(r"'", r"\'")}', title = '${_titlecontroller.text.replaceAll(r"'", r"\'")}', details = '${_detailscontroller.text.replaceAll(r"'", r"\'")}',date = null,time = '$time',important = '' where title = '${title.replaceAll(r"'", r"\'")}';");
@@ -758,13 +757,9 @@ class _CreateTaskState extends State<CreateTask> {
                         if (!imp) {
                           starredicon = Icons.star;
                           imp = true;
-
-                          //  imp = true;
                         } else {
                           starredicon = Icons.star_border_outlined;
                           imp = false;
-
-                          // imp = false;
                         }
                       });
                     },
@@ -792,7 +787,6 @@ class _CreateTaskState extends State<CreateTask> {
               refreshpage: widget.refreshpage,
             ),
             body: SingleChildScrollView(
-              // scrollDirection: Axis.horizontal,
               child: Column(
                 children: <Widget>[
                   Container(
@@ -829,10 +823,6 @@ class _CreateTaskState extends State<CreateTask> {
                         width: 15,
                       ),
                       timeselection(),
-
-                      //  labelselection(
-                      //     label: label,
-                      //   )
                     ],
                   ),
                 ],
@@ -905,33 +895,6 @@ class _MarkCompleteFABState extends State<MarkCompleteFAB> {
   }
 }
 
-class labelselection extends StatelessWidget {
-  final String label;
-  const labelselection({super.key, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return ActionChip(
-      label: Text(
-        label.toString().toUpperCase(),
-        style: const TextStyle(
-            fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
-      ),
-      // padding: EdgeInsets.all(15),
-      onPressed: () {},
-      backgroundColor: const Color(0xFF002021),
-      avatar: const CircleAvatar(
-        backgroundColor: const Color(0xFF002021),
-        foregroundColor: const Color(0xFF002021),
-        child: Icon(
-          Icons.label_important_outline,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
 class timeselection extends StatefulWidget {
   const timeselection({
     super.key,
@@ -943,7 +906,6 @@ class timeselection extends StatefulWidget {
 
 class _timeselectionState extends State<timeselection> {
   TimeOfDay selectedTime = TimeOfDay.now();
-  // TimeOfDay selectedTime = TimeOfDay.now();
   String finaltime = time;
   Future<void> _selectTime(BuildContext context) async {
     try {
@@ -992,7 +954,6 @@ class _timeselectionState extends State<timeselection> {
         style: const TextStyle(
             fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
       ),
-      // padding: EdgeInsets.all(15),
       onPressed: () async {
         await _selectTime(context);
       },
