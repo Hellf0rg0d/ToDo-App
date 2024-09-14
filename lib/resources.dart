@@ -9,6 +9,7 @@ class deviceinfo {
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   static Map<String, dynamic> deviceData = <String, dynamic>{};
   static Future<void> initPlatformState() async {
+    //function to check os of the device
     try {
       deviceData = switch (defaultTargetPlatform) {
         TargetPlatform.android =>
@@ -34,6 +35,7 @@ class deviceinfo {
   }
 
   static Future<void> injectingid(Map<String, dynamic> devicedetails) async {
+    //function to inject uid to db.
     try {
       conn = await MySQLConnection.createConnection(
         host: <hostid>,
@@ -48,6 +50,7 @@ class deviceinfo {
           "';");
 
       for (final row in result.rows) {
+        //condition to check existence of uid of the device in db.
         value = row.colAt(0);
       }
       if (value == '0') {
