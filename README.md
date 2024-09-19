@@ -17,7 +17,7 @@ Every Action gets automatically updated.<br/>If the Application is deleted the d
 + [Visual C++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170) is required for to run this application
 + [You can Download it from here.](https://drive.google.com/file/d/1b7x0vt2NdB1YblGVyE93mAQguHZ01kq3/view?usp=sharing)<br/>
 ## ANDROID.
-+ [You can Download it from here.](https://drive.google.com/file/d/1_ovZbv6dVy_or72Ep25YAPf1O0L_92ub/view?usp=sharing) <br/>
++ [You can Download it from here.](https://drive.google.com/file/d/1B02NVGA6wYuBP_hNEBkfFssVWpZp-W3S/view?usp=sharing) <br/>
 ## LINUX.
 + [You can Download it from here.](https://drive.google.com/file/d/1f5Cg2SYNO_Ynkbeh4cORAU2WduZD7YzW/view?usp=sharing) <br/>
 >[!CAUTION]
